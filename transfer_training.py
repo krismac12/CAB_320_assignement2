@@ -60,7 +60,7 @@ x = Dense(5, activation='softmax')(x)
 model = Model(inputs=base_model.input, outputs=x)
 
 # Define the optimizer
-optimizer = SGD(learning_rate=0.01, momentum=0.0, nesterov=False)
+optimizer = SGD(learning_rate=0.001, momentum=0.9, nesterov=False)
 
 
 # Compile the model with an appropriate optimizer, loss function, and metrics
