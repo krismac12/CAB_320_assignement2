@@ -71,7 +71,18 @@ y_train = to_categorical(y_train, num_classes=len(CATEGORIES))
 y_test = to_categorical(y_test, num_classes=len(CATEGORIES))
 
 # Train the model on your own dataset
-model.fit(X_train, y_train, epochs=25, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, epochs=25, validation_data=(X_test, y_test))
+
+fig = plt.figure(figsize=[20, 6])
+ax = fig.add_subplot(1, 2, 1)
+ax.plot(history.history['loss'], label="Training Loss")
+ax.plot(history.history['val_loss'], label="Validation Loss")
+ax.legend()
+
+ax = fig.add_subplot(1, 2, 2)
+ax.plot(history.history['accuracy'], label="Training Accuracy")
+ax.plot(history.history['val_accuracy'], label="Validation Accuracy")
+ax.legend()
 
 # Predict the first 10 results in X_test
 y_pred = model.predict(X_test[50:100])
